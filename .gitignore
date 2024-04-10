@@ -1,3 +1,8 @@
+###> bakeapi/local ###
+.idea/
+.vscode/
+.DS_Store
+###< bakeapi/local ###
 
 ###> symfony/framework-bundle ###
 /.env.local
