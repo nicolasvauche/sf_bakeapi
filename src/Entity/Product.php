@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -12,25 +13,34 @@ class Product
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['product:list'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['product:list'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[Groups(['product:list'])]
     private ?string $price = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['product:list'])]
     private ?string $status = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[Groups(['product:list'])]
+    private ?int $userId = null;
+
     #[ORM\Column]
+    #[Groups(['product:list'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
+    #[Groups(['product:list'])]
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
@@ -84,6 +94,11 @@ class Product
         $this->user = $user;
 
         return $this;
+    }
+
+    public function getUserId(): ?int
+    {
+        return $this->user?->getId();
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable

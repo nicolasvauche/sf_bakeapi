@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les Produits{% endblock %}
+
+{% block body %}
+    <h1>Tous les Produits</h1>
+
+    <ul>
+        {% for product in products %}
+            <li>
+                <strong>{{ product.name }}</strong>
+                -
+                {{ product.price|number_format(2, ',', ' ') }}€
+                -
+                {{ product.status }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
