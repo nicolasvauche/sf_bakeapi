@@ -7,7 +7,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class AppFixtures extends Fixture
+class UserFixtures extends Fixture
 {
     private UserPasswordHasherInterface $passwordHasher;
 
@@ -18,6 +18,13 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        $user = new User();
+        $user->setEmail('admin@bakeapi.com')
+            ->setPassword($this->passwordHasher->hashPassword($user, 'admin'))
+            ->setRoles(['ROLE_ADMIN'])
+            ->setBakeryName('Bake Application');
+        $manager->persist($user);
+
         $user = new User();
         $user->setEmail('bob@bakeapi.com')
             ->setPassword($this->passwordHasher->hashPassword($user, 'bob'))
