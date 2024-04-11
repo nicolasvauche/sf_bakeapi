@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les Utilisateurs{% endblock %}
+
+{% block body %}
+    <h1>Tous les Utilisateurs</h1>
+
+    <ul>
+        {% for user in users %}
+            <li>
+                <strong>{{ user.bakeryName }}</strong>
+                -
+                {{ user.email }}
+
+                <ul>
+                    {% for product in user.products %}
+                        <li>
+                            <strong>{{ product.name }}</strong>
+                            -
+                            {{ product.price | number_format(2, ',', ' ') }}€
+                            -
+                            {{ product.status | lower }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

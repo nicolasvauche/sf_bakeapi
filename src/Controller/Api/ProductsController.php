@@ -15,6 +15,6 @@ class ProductsController extends AbstractController
     {
         $products = $productRepository->findAll();
 
-        return $this->json($products, 200, [], ['groups' => ['product:list']]);
+        return $this->json($products, Response::HTTP_OK, [], ['groups' => ['product:list']]);
     }
 }
