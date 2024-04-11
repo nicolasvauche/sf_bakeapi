@@ -10,9 +10,9 @@
             <li>
                 <strong>{{ product.name }}</strong>
                 -
-                {{ product.price|number_format(2, ',', ' ') }}€
+                {{ product.price | number_format(2, ',', ' ') }}€
                 -
-                {{ product.status }}
+                {{ product.status | lower }}
                 chez
                 {{ product.user.bakeryName }}
             </li>
