@@ -13,34 +13,34 @@ class Product
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['product:list'])]
+    #[Groups(['product:list', 'product:add'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['product:list'])]
+    #[Groups(['product:list', 'product:add'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    #[Groups(['product:list'])]
+    #[Groups(['product:list', 'product:add'])]
     private ?string $price = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['product:list'])]
+    #[Groups(['product:list', 'product:add'])]
     private ?string $status = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[Groups(['product:list'])]
+    #[Groups(['product:list', 'product:add'])]
     private ?int $userId = null;
 
     #[ORM\Column]
-    #[Groups(['product:list'])]
+    #[Groups(['product:list', 'product:add'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
-    #[Groups(['product:list'])]
+    #[Groups(['product:list', 'product:add'])]
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int

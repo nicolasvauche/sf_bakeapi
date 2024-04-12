@@ -21,4 +21,18 @@ class ProductsController extends AbstractController
 
         return $this->json($products, Response::HTTP_OK, [], ['groups' => ['product:list']]);
     }
+
+    #[Route('', name: 'add', methods: ['POST'])]
+    public function add(Request $request, EntityManagerInterface $entityManager, SerializerInterface $serializer): Response
+    {
+        $product = $serializer->deserialize($request->getContent(), Product::class, 'json');
+        $product->setUser($this->getUser())
+            ->setCreatedAt(new \DateTimeImmutable())
+            ->setUpdatedAt(new \DateTimeImmutable());
+        $entityManager->persist($product);
+
+        $entityManager->flush();
+
+        return $this->json($product, Response::HTTP_CREATED, [], ['groups' => ['product:add']]);
+    }
 }
