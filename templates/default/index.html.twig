@@ -3,5 +3,5 @@
 {% block title %}Bienvenue{% endblock %}
 
 {% block body %}
-    <h1>Bonjour {{ prenom }} !</h1>
+    <h1>Bonjour {{ app.user ? app.user.bakeryName : prenom }} !</h1>
 {% endblock %}
